@@ -1,1 +1,71 @@
-<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Hart's Rest</title></head><body><p>placeholder</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="theme-color" content="#070605" />
+<title>COME IN OUT OF IT</title>
+<style>
+  :root {
+    --bg: #070605;
+    --paper: #1a1410;
+    --ink: #e8d9c4;
+    --muted: #9a8570;
+    --accent: #c45a3a;
+    --gold: #c4a36a;
+    --line: #2a221c;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: "Iowan Old Style", Palatino, "Times New Roman", serif; min-height: 100%; }
+  body { padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom); }
+  .wrap { max-width: 42rem; margin: 0 auto; min-height: 100dvh; padding: 1.15rem 1.1rem 2.4rem; }
+  header.top { display: flex; justify-content: space-between; align-items: baseline; gap: .75rem;
+    border-bottom: 1px solid var(--line); padding-bottom: .55rem; margin-bottom: 1.1rem; }
+  .title-small { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+  .meter { font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: right; }
+  h1 { font-weight: 400; font-size: 1.55rem; letter-spacing: .08em; margin: .2rem 0 1rem; color: var(--gold); }
+  .art { height: 7.2rem; margin: 0 0 1.1rem; border: 1px solid var(--line);
+    background: radial-gradient(120% 80% at 20% 0%, rgba(196,90,58,.18), transparent 55%), linear-gradient(180deg, #1c1612, #0b0908); }
+  .story p { font-size: 1.08rem; line-height: 1.55; margin: 0 0 .9rem; }
+  .choices { margin-top: 1.35rem; display: grid; gap: .65rem; }
+  button.choice, button.util, a.choice {
+    display: block; width: 100%; text-align: left; background: var(--paper); color: var(--ink);
+    border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: .95rem .9rem;
+    font: inherit; font-size: 1.02rem; line-height: 1.35; cursor: pointer; touch-action: manipulation;
+    text-decoration: none; appearance: none; -webkit-appearance: none;
+  }
+  a.choice:active { background: #241c16; }
+  .row { display: flex; gap: .5rem; margin-top: 1.4rem; }
+  button.util { border-left-color: var(--gold); flex: 1; font-size: .82rem; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--muted); text-align: center; }
+  .ending-mark { letter-spacing: .28em; text-transform: uppercase; font-size: .72rem; color: var(--accent); margin-bottom: .6rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="title-small">Hart's Rest</div>
+    <div class="meter" id="meter"></div>
+  </header>
+  <div class="art" id="art"></div>
+  <div class="story" id="story"></div>
+  <div class="choices" id="choices"></div>
+  <div class="row">
+    <button class="util" id="saveBtn">Save</button>
+    <button class="util" id="loadBtn">Load</button>
+    <button class="util" id="restartBtn">Restart</button>
+  </div>
+</div>
+<script src="p1.js"></script>
+<script src="p2.js"></script>
+<script src="p3.js"></script>
+<script src="p4.js"></script>
+<script src="p5.js"></script>
+<script src="p6.js"></script>
+<script src="p7.js"></script>
+<script src="boot.js"></script>
+</body>
+</html>
