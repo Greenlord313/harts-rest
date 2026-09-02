@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<title>COME IN OUT OF IT</title>
+<style>
+:root{--bg:#070605;--paper:#1a1410;--ink:#eddcc4;--muted:#9a8570;--accent:#c45a3a;--gold:#c4a36a;--line:#2a221c}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Palatino,"Iowan Old Style","Times New Roman",serif}
+body{padding:env(safe-area-inset-top) 16px 28px;max-width:40rem;margin:0 auto}
+header{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:14px 0 8px;margin-bottom:10px}
+.brand{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+#meter{font-size:11px;color:var(--muted)}
+.where{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 4px}
+h1{font-weight:400;font-size:1.5rem;color:var(--gold);margin:.1rem 0 1rem;line-height:1.15}
+.art{height:5rem;margin:0 0 1rem;border:1px solid var(--line);background:radial-gradient(120% 80% at 16% 0%,rgba(196,90,58,.22),transparent 55%),linear-gradient(#1a1410,#080706)}
+p{font-size:1.1rem;line-height:1.58;margin:0 0 .95rem}
+#choices{display:grid;gap:.7rem;margin-top:1.2rem}
+a.choice{display:block;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-left:3px solid var(--accent);padding:.95rem 1rem;text-decoration:none;font:inherit;line-height:1.4;touch-action:manipulation}
+.row{display:flex;gap:.45rem;margin-top:1.4rem}
+button.util{flex:1;background:var(--paper);color:var(--muted);border:1px solid var(--line);border-left:3px solid var(--gold);padding:.75rem .3rem;font:inherit;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.end{letter-spacing:.24em;text-transform:uppercase;font-size:.7rem;color:var(--accent);margin-bottom:.35rem}
+</style>
+</head>
+<body>
+<header><div class="brand">Hart's Rest</div><div id="meter"></div></header>
+<div class="art"></div>
+<div id="story"></div>
+<div id="choices"></div>
+<div class="row">
+<button class="util" type="button" id="saveBtn">Save</button>
+<button class="util" type="button" id="loadBtn">Load</button>
+<button class="util" type="button" id="restartBtn">Restart</button>
+</div>
+<script src="https://cdn.jsdelivr.net/gh/Greenlord313/harts-rest@main/live-a.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Greenlord313/harts-rest@main/live-b.js"></script>
+<script>
+const K="harts-live-v3";
+let S={id:"start"};
+function show(id){
+  const p=P[id]; if(!p)return; S.id=id;
+  document.getElementById("meter").textContent=p.e?"ending":"inside";
+  document.getElementById("story").innerHTML=(p.e?'<div class="end">Ending</div>':'')+(p.w?'<div class="where">'+p.w+'</div>':'')+(p.h?'<h1>'+p.h+'</h1>':'')+p.t.map(x=>"<p>"+x+"</p>").join("");
+  const box=document.getElementById("choices"); box.innerHTML="";
+  (p.c||[]).forEach(ch=>{
+    const a=document.createElement("a"); a.className="choice"; a.href="#"; a.textContent=ch.t;
+    const run=e=>{if(e){e.preventDefault();e.stopPropagation()} if(ch.r)S={id:"start"}; show(ch.g); scrollTo(0,0)};
+    a.addEventListener("click",run); a.addEventListener("touchend",run,{passive:false});
+    box.appendChild(a);
+  });
+  try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}
+}
+document.getElementById("saveBtn").onclick=()=>{try{localStorage.setItem(K,JSON.stringify(S));alert("Saved")}catch(e){alert("No")}};
+document.getElementById("loadBtn").onclick=()=>{try{const r=localStorage.getItem(K);if(!r){alert("No save");return}S=JSON.parse(r);show(S.id)}catch(e){alert("Broken")}};
+document.getElementById("restartBtn").onclick=()=>{if(confirm("Restart?")){S={id:"start"};show("start")}};
+show("start");
+</script>
+</body>
+</html>
