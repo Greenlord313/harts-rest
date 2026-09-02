@@ -1,71 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="theme-color" content="#070605" />
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
 <title>COME IN OUT OF IT</title>
 <style>
-  :root {
-    --bg: #070605;
-    --paper: #1a1410;
-    --ink: #e8d9c4;
-    --muted: #9a8570;
-    --accent: #c45a3a;
-    --gold: #c4a36a;
-    --line: #2a221c;
-  }
-  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
-    font-family: "Iowan Old Style", Palatino, "Times New Roman", serif; min-height: 100%; }
-  body { padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom); }
-  .wrap { max-width: 42rem; margin: 0 auto; min-height: 100dvh; padding: 1.15rem 1.1rem 2.4rem; }
-  header.top { display: flex; justify-content: space-between; align-items: baseline; gap: .75rem;
-    border-bottom: 1px solid var(--line); padding-bottom: .55rem; margin-bottom: 1.1rem; }
-  .title-small { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
-  .meter { font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: right; }
-  h1 { font-weight: 400; font-size: 1.55rem; letter-spacing: .08em; margin: .2rem 0 1rem; color: var(--gold); }
-  .art { height: 7.2rem; margin: 0 0 1.1rem; border: 1px solid var(--line);
-    background: radial-gradient(120% 80% at 20% 0%, rgba(196,90,58,.18), transparent 55%), linear-gradient(180deg, #1c1612, #0b0908); }
-  .story p { font-size: 1.08rem; line-height: 1.55; margin: 0 0 .9rem; }
-  .choices { margin-top: 1.35rem; display: grid; gap: .65rem; }
-  button.choice, button.util, a.choice {
-    display: block; width: 100%; text-align: left; background: var(--paper); color: var(--ink);
-    border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: .95rem .9rem;
-    font: inherit; font-size: 1.02rem; line-height: 1.35; cursor: pointer; touch-action: manipulation;
-    text-decoration: none; appearance: none; -webkit-appearance: none;
-  }
-  a.choice:active { background: #241c16; }
-  .row { display: flex; gap: .5rem; margin-top: 1.4rem; }
-  button.util { border-left-color: var(--gold); flex: 1; font-size: .82rem; letter-spacing: .08em;
-    text-transform: uppercase; color: var(--muted); text-align: center; }
-  .ending-mark { letter-spacing: .28em; text-transform: uppercase; font-size: .72rem; color: var(--accent); margin-bottom: .6rem; }
-</style>
-</head>
+:root{--bg:#070605;--paper:#1a1410;--ink:#e8d9c4;--muted:#9a8570;--accent:#c45a3a;--gold:#c4a36a;--line:#2a221c}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Palatino,"Times New Roman",serif}
+body{padding:env(safe-area-inset-top) 12px env(safe-area-inset-bottom);max-width:42rem;margin:0 auto}
+header{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:12px 0;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+#meter{color:var(--muted);letter-spacing:.08em}
+h1{font-weight:400;font-size:1.4rem;color:var(--gold)}
+.art{height:6.2rem;margin:0 0 1rem;border:1px solid var(--line);background:radial-gradient(120% 80% at 20% 0%,rgba(196,90,58,.18),transparent 55%),linear-gradient(#1c1612,#0b0908)}
+p{font-size:1.06rem;line-height:1.5;margin:0 0 .85rem}
+#choices{display:grid;gap:.6rem;margin-top:1.1rem}
+a.choice,button.util{display:block;width:100%;text-align:left;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-left:3px solid var(--accent);padding:.9rem;font:inherit;text-decoration:none;cursor:pointer;touch-action:manipulation}
+.row{display:flex;gap:.5rem;margin:1.2rem 0 2rem}
+button.util{border-left-color:var(--gold);flex:1;text-align:center;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.end{letter-spacing:.28em;text-transform:uppercase;font-size:.72rem;color:var(--accent)}
+</style></head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <div class="title-small">Hart's Rest</div>
-    <div class="meter" id="meter"></div>
-  </header>
-  <div class="art" id="art"></div>
-  <div class="story" id="story"></div>
-  <div class="choices" id="choices"></div>
-  <div class="row">
-    <button class="util" id="saveBtn">Save</button>
-    <button class="util" id="loadBtn">Load</button>
-    <button class="util" id="restartBtn">Restart</button>
-  </div>
+<header><div>Hart's Rest</div><div id="meter"></div></header>
+<div class="art"></div>
+<div id="story"></div>
+<div id="choices"></div>
+<div class="row">
+<button class="util" id="saveBtn">Save</button>
+<button class="util" id="loadBtn">Load</button>
+<button class="util" id="restartBtn">Restart</button>
 </div>
-<script src="p1.js"></script>
-<script src="p2.js"></script>
-<script src="p3.js"></script>
-<script src="p4.js"></script>
-<script src="p5.js"></script>
-<script src="p6.js"></script>
-<script src="p7.js"></script>
-<script src="boot.js"></script>
-</body>
-</html>
+<script>
+const P={
+start:{h:"Come In Out Of It",t:["Short dark story. No combat. Sex, coercion dressed as hospitality, addiction, choices with no good option.","Everyone here is an adult. Close it whenever you like."],c:[{t:"I understand. Let me in.",g:"road"},{t:"Not tonight.",g:"leave"}]},
+leave:{h:"Door shut",t:["You put the phone face down."],c:[{t:"Open it anyway.",g:"road"}]},
+road:{h:"The last twelve kilometres",t:["Wet wool. Fuel light on. Phone on 4%. The Lake Highway is a black throat.","The sign is a slab of wood. HART'S REST. GUESTS BY ARRANGEMENT."],c:[{t:"Take the turnoff.",g:"drive"},{t:"Keep driving until the car dies.",g:"die"}]},
+die:{h:"A clean kind of stupid",t:["Four minutes of spine. Then the engine coughs. Headlights come the other way, slow, like they expected you."],c:[{t:"Flag them down.",g:"pickup"},{t:"Stay in the car.",g:"cold"}]},
+cold:{h:"Ending — The polite cold",e:1,t:["You lock the doors. That is the last useful thing you do. Pride is a coat that does not keep you warm."],c:[{t:"Begin again.",g:"start",r:1}]},
+pickup:{h:"She already knew the car",t:["White 4WD. Mara, mid-thirties, black dress under a raincoat.","You must be the late one. Nobody steals anything out here except time. She looks at your mouth when she says time."],c:[{t:"Get in.",g:"hall"}]},
+drive:{h:"The house that pretends it is kindness",t:["Gravel. Bone-coloured verandah. The door opens before you knock. Mara smells like soap and red wine.","Come in out of it. Boots off."],c:[{t:"Boots off. Play guest.",g:"kit"},{t:"Keep the boots on.",g:"kit"}]},
+hall:{h:"Inside",t:["Coats. A bowl of keys. Another bowl that looks like keys until you see the teeth are wrong."],c:[{t:"Kitchen.",g:"kit"}]},
+kit:{h:"The first price is a drink",t:["Ellis at the stove, forties, already spent. Sadie at the table, late twenties, looking at you like a second drowning person.","Mara pours. You drink, you sleep, you pay in the morning. Money is the boring one."],c:[{t:"Drink.",g:"drink"},{t:"Ask Sadie if she is all right — out loud.",g:"asks"},{t:"I only need a bed.",g:"bed"}]},
+drink:{h:"It goes down like a handshake",t:["Ellis: We had a bloke who talked dignity all night. By Thursday he was asking when to shower.","Sadie: He left his phone in the fruit bowl."],c:[{t:"Ask what Thursday costs.",g:"tar"},{t:"Sit next to Sadie.",g:"sits"},{t:"Let Mara refill you.",g:"refill"}]},
+asks:{h:"You make it everyone's problem",t:["I am fine, Sadie says too fast. I am still here. That is the whole review.","Mara's hand on your neck: Rescues are a tariff item."],c:[{t:"Ask the tariff.",g:"tar"},{t:"Drop it and drink.",g:"drink"}]},
+bed:{h:"They let you say the sentence",t:["Mara sets a warm brass key down. Courtesy room. Lock works until it doesn't. Or stop performing independence and come upstairs."],c:[{t:"Take the key.",g:"room"},{t:"Ask what upstairs means.",g:"terms"}]},
+tar:{h:"The tariff",t:["Night one is shelter. Night two is company. Night three is usefulness. After that you are in the book.","Company means you are touched and you touch back. Usefulness means you do not pick the shape."],c:[{t:"Courtesy room. Be a coward on purpose.",g:"room"},{t:"Upstairs with Mara.",g:"terms"},{t:"Ask Ellis what he pays with.",g:"ellis"}]},
+sits:{h:"Two animals in the same trap",t:["Her knee stays against yours. Don't be a hero. Heroes get used twice. If you get signal in the morning, tell me, not them."],c:[{t:"Promise her.",g:"tar"},{t:"Don't promise what you can't carry.",g:"tar"}]},
+refill:{h:"She likes a quiet mouth",t:["Her thumb on the inside of your wrist. Ellis leaves. Sadie does not."],c:[{t:"Go upstairs with her now.",g:"mara"},{t:"Ask Sadie to come too.",g:"crowd"}]},
+ellis:{h:"He has already spent himself",t:["I pay with being easy. If you want a night that does not pretend it is romance, I am cheaper than she is."],c:[{t:"Go with Ellis.",g:"eln"},{t:"Choose Mara instead.",g:"terms"},{t:"Courtesy room.",g:"room"}]},
+terms:{h:"She says it civilised",t:["I take your clothes off. I decide the pace. Tell me if something is actually unsafe. Everything else is flavour."],c:[{t:"Yes.",g:"mara"},{t:"Include someone else so you are not alone with her.",g:"crowd"},{t:"Take the key instead.",g:"room"}]},
+room:{h:"The room at the end",t:["Narrow bed. A Bible with names in the middle. Then a bedframe, a laugh cut short, someone saying please in a way that is not a request."],c:[{t:"Stay and listen.",g:"listen"},{t:"Go toward the sound.",g:"sound"},{t:"Try the window.",g:"win"}]},
+win:{h:"The drop is honest",t:["The sash gives. The drop is not fatal. Someone knocks like a nurse."],c:[{t:"Climb out.",g:"bush"},{t:"Open the door.",g:"sound"}]},
+bush:{h:"Ending — You chose the trees",e:1,t:["Mud to the knee. You keep your body to yourself. That is the win. It does not feel like one."],c:[{t:"Begin again.",g:"start",r:1}]},
+listen:{h:"Cowardice has a sound",t:["Mara says good. Ellis says don't. Sadie says nothing until she does. Inaction is still a vote."],c:[{t:"Morning.",g:"morn"}]},
+sound:{h:"The door that was never a secret",t:["Whisky light. Mara has Sadie on the bed. Ellis in the chair. Courtesy room didn't take. Sit, kneel, or take your clothes off."],c:[{t:"Kneel where she points.",g:"kneel"},{t:"Sit and only watch.",g:"watch"},{t:"Ask Sadie, not them.",g:"asknow"}]},
+mara:{h:"She undresses you like paperwork",t:["No kiss first. Then a deep one, wine and mint, her hand already in your clothes. You come when I say the house is satisfied. She watches your face like a ledger. Now. You break cheap."],c:[{t:"Stay in her bed.",g:"morn"},{t:"Go back to the courtesy room after.",g:"morn"}]},
+eln:{h:"He is gentle in the way wrecked men are",t:["He kisses like he expects to be stopped. He asks you to say his name so he can feel chosen. After: Don't tell her I asked to be wanted. She prices that."],c:[{t:"Stay till morning.",g:"morn"},{t:"Leave him the empty bed.",g:"morn"}]},
+crowd:{h:"The house loves a crowd",t:["Sadie on her back because Mara says learn her taste. Ellis's hand in your hair. Mara talks the whole time. Nobody says I love you."],c:[{t:"Sleep in the heat.",g:"morn"}]},
+kneel:{h:"You pick a height",t:["She uses your mouth as a tool on Sadie. Salt. Soap. Then she wipes your mouth and feeds it to you."],c:[{t:"Stay the night in that room.",g:"morn"}]},
+watch:{h:"Witness is not innocence",t:["Mara ruins Sadie with patience and makes her thank her. Sadie does. You leave unused and more marked than if you had knelt."],c:[{t:"Morning.",g:"morn"}]},
+asknow:{h:"A question they did not budget for",t:["Sadie: If you make me choose in front of them I will choose them."],c:[{t:"Stay and take the mouthful.",g:"kneel"},{t:"Go back down the hall.",g:"listen"}]},
+morn:{h:"Tea, rain, invoice",t:["Your name is in the black book now. Night one complete. Walk, become useful, or do something with Sadie before noon."],c:[{t:"Take Sadie outside.",g:"out"},{t:"Try the road.",g:"try"},{t:"Ask what useful means.",g:"noon"}]},
+out:{h:"Under the eaves",t:["Sadie's cigarette shakes. I came for a week. That was January. If you get out, take me or stop looking at me like I am the lesson."],c:[{t:"When I go, you are coming.",g:"noon"},{t:"I can't carry you.",g:"noon"},{t:"Kiss her like that is an answer.",g:"noon"}]},
+try:{h:"Driveway in daylight",t:["The car sits like a dead animal. You can go. I keep saying that because it makes the staying sweeter."],c:[{t:"Walk anyway.",g:"walk"},{t:"Go back. Hear noon.",g:"noon"}]},
+walk:{h:"Mud does not care",t:["A ute passes toward the house, not town. Leaving on foot is allowed because it rarely works."],c:[{t:"Turn around.",g:"noon"},{t:"Keep walking.",g:"ewalk"}]},
+ewalk:{h:"Ending — Highway prayer",e:1,t:["Bitumen. A lift. You do not go back for Sadie. You kept your body. You left a name in a book."],c:[{t:"Begin again.",g:"start",r:1}]},
+noon:{h:"Noon",t:["An older dry voice on speaker. Viewing at three. If shy, use Sadie. If greedy, let them demonstrate on Sadie. People confuse money with rescue."],c:[{t:"Refuse.",g:"ref"},{t:"Agree — use Sadie.",g:"uses"},{t:"Agree — put yourself on the table instead.",g:"self"},{t:"Offer Ellis.",g:"offe"}]},
+ref:{h:"The word no",t:["Leave before three, or be difficult. Difficult is another flavour of useful."],c:[{t:"Leave now.",g:"lnow"},{t:"Stay and be difficult.",g:"diff"}]},
+lnow:{h:"The door in the afternoon",t:["Your jacket like a receipt. Sadie in the hall."],c:[{t:"Take Sadie.",g:"tog"},{t:"Go alone.",g:"alone"}]},
+tog:{h:"Ending — Not salvation",e:1,t:["Two coats. A town. She fucks you like she is trying to get the house out of her body. You did not become good. You walked with someone."],c:[{t:"Begin again.",g:"start",r:1}]},
+alone:{h:"Ending — You saved the wrong animal",e:1,t:["You get out. At dusk you will think of her cigarette tin. You are free and you are not clean."],c:[{t:"Begin again.",g:"start",r:1}]},
+diff:{h:"Manners as a knife",t:["You do not undress when told. Sit in the chair. The owner likes a witness who thinks they are better than the bed."],c:[{t:"Be the witness.",g:"week"},{t:"Break and take the bed first.",g:"self"}]},
+uses:{h:"You pick the cheaper soul",t:["They put her on the dining table. Your hands know how. She turns her face away when she comes."],c:[{t:"Three o'clock.",g:"week"}]},
+self:{h:"You put yourself on the invoice",t:["Mara strips you in better light. Sadie holds your hand. That almost ruins you. You come on instruction."],c:[{t:"Three o'clock.",g:"week"}]},
+offe:{h:"He expected it",t:["Ellis: Don't watch if you are going to make a face. I can take being used. I can't take being pitied while I'm hard."],c:[{t:"Watch, since you volunteered him.",g:"week"},{t:"Leave the room.",g:"week"}]},
+week:{h:"Money, the boring cruelty",t:["The envelope would fix a car. It would not fix your mouth. Seven nights, available. Or take half and the track."],c:[{t:"Take the week. Become the house.",g:"kept"},{t:"Take half and walk.",g:"half"},{t:"Leave the money. Try Sadie.",g:"last"}]},
+last:{h:"One more chance",t:["If I go, she says, I am not your redemption arc."],c:[{t:"I know. Come anyway.",g:"tog"},{t:"Leave her.",g:"alone"}]},
+kept:{h:"Ending — Boarder",e:1,t:["The week becomes a shape. One night you hear tyres and understand you are now the laugh the next late one hears through a locked door."],c:[{t:"Begin again.",g:"start",r:1}]},
+half:{h:"Ending — Almost",e:1,t:["Half the envelope. A town. Almost is a kind of stain."],c:[{t:"Begin again.",g:"start",r:1}]}
+};
+const K="harts-v2";
+let S={id:"start",f:{},st:{w:0,s:0,a:0,l:0,d:0}};
+function blank(){return{id:"start",f:{},st:{w:0,s:0,a:0,l:0,d:0}}}
+function meter(){document.getElementById("meter").textContent="unwritten"}
+function show(id){
+ const p=P[id]; if(!p)return; S.id=id; meter();
+ document.getElementById("story").innerHTML=(p.e?'<div class="end">Ending</div>':'')+(p.h?'<h1>'+p.h+'</h1>':'')+p.t.map(x=>"<p>"+x+"</p>").join("");
+ const box=document.getElementById("choices"); box.innerHTML="";
+ (p.c||[]).forEach(ch=>{
+  const a=document.createElement("a"); a.className="choice"; a.href="#"; a.textContent=ch.t;
+  const run=e=>{if(e){e.preventDefault();e.stopPropagation()} if(ch.r)S=blank(); show(ch.g); window.scrollTo(0,0)};
+  a.addEventListener("click",run); a.addEventListener("touchend",run,{passive:false}); box.appendChild(a);
+ });
+ try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}
+}
+document.getElementById("saveBtn").onclick=()=>{try{localStorage.setItem(K,JSON.stringify(S));alert("Saved")}catch(e){alert("No save")}};
+document.getElementById("loadBtn").onclick=()=>{try{const r=localStorage.getItem(K);if(!r){alert("No save");return}S=Object.assign(blank(),JSON.parse(r));show(S.id)}catch(e){alert("Broken")}};
+document.getElementById("restartBtn").onclick=()=>{if(confirm("Restart?")){S=blank();show("start")}};
+show("start");
+</script>
+</body></html>
